@@ -1,5 +1,6 @@
 <?php
-class Alternatif {
+class Alternatif
+{
 	private $conn;
 	private $table_name = "data_alternatif";
 
@@ -18,23 +19,20 @@ class Alternatif {
 
 	public $periode;
 
-	public function __construct($db) {
+	public function __construct($db)
+	{
 		$this->conn = $db;
 	}
 
-	function insert() {
-		$query = "INSERT INTO {$this->table_name} VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)";
+	function insert()
+	{
+		$query = "INSERT INTO {$this->table_name} VALUES(?, ?, ?, ?, ?)";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
-		$stmt->bindParam(2, $this->nik);
-		$stmt->bindParam(3, $this->nama);
-		$stmt->bindParam(4, $this->tempat_lahir);
-		$stmt->bindParam(5, $this->tanggal_lahir);
-		$stmt->bindParam(6, $this->kelamin);
-		$stmt->bindParam(7, $this->alamat);
-		$stmt->bindParam(8, $this->jabatan);
-		$stmt->bindParam(9, $this->tanggal_masuk);
-		$stmt->bindParam(10, $this->pendidikan);
+		$stmt->bindParam(2, $this->nama);
+		$stmt->bindParam(3, $this->tanggal_lahir);
+		$stmt->bindParam(4, $this->kelamin);
+		$stmt->bindParam(5, $this->tanggal_masuk);
 
 		if ($stmt->execute()) {
 			return true;
@@ -43,31 +41,35 @@ class Alternatif {
 		}
 	}
 
-	function readAll() {
+	function readAll()
+	{
 		$query = "SELECT * FROM {$this->table_name} ORDER BY id_alternatif ASC";
-		$stmt = $this->conn->prepare( $query );
+		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
 		return $stmt;
 	}
 
-	function readByFilter() {
+	function readByFilter()
+	{
 		$query = "SELECT * FROM {$this->table_name} a JOIN nilai_awal b ON a.id_alternatif=b.id_alternatif WHERE b.keterangan='B'";
-		$stmt = $this->conn->prepare( $query );
+		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
 		return $stmt;
 	}
 
-	function countByFilter() {
+	function countByFilter()
+	{
 		$query = "SELECT * FROM {$this->table_name} a JOIN nilai_awal b ON a.id_alternatif=b.id_alternatif WHERE b.keterangan='B' ";
-		$stmt = $this->conn->prepare( $query );
+		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
 		return $stmt->rowCount();
 	}
 
-	function readAllWithNilai() {
+	function readAllWithNilai()
+	{
 		$query = "SELECT *, b.nilai, b.keterangan
 				FROM {$this->table_name} a
 					JOIN nilai_awal b ON a.id_alternatif=b.id_alternatif
@@ -79,7 +81,8 @@ class Alternatif {
 		return $stmt;
 	}
 
-	function readByRank() {
+	function readByRank()
+	{
 		$query = "SELECT *
 				FROM {$this->table_name} a
 					JOIN nilai_awal b ON a.id_alternatif=b.id_alternatif
@@ -94,15 +97,17 @@ class Alternatif {
 		return $stmt;
 	}
 
-	function countAll(){
+	function countAll()
+	{
 		$query = "SELECT * FROM {$this->table_name} ORDER BY id_alternatif ASC";
-		$stmt = $this->conn->prepare( $query );
+		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
 		return $stmt->rowCount();
 	}
 
-	function readOne(){
+	function readOne()
+	{
 		$query = "SELECT * FROM {$this->table_name} WHERE id_alternatif=? LIMIT 0,1";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
@@ -112,18 +117,14 @@ class Alternatif {
 		$this->id = $row["id_alternatif"];
 		$this->nik = $row["nik"];
 		$this->nama = $row["nama"];
-		$this->tempat_lahir = $row["tempat_lahir"];
 		$this->tanggal_lahir = $row["tanggal_lahir"];
 		$this->kelamin = $row["kelamin"];
-		$this->alamat = $row["alamat"];
-		$this->jabatan = $row["jabatan"];
-		$this->tanggal_masuk = $row["tanggal_masuk"];
-		$this->pendidikan = $row["pendidikan"];
 		$this->hasil_akhir = $row["hasil_akhir"];
 		// $this->skor_alternatif = $row['skor_alternatif'];
 	}
 
-	function readOneByNik(){
+	function readOneByNik()
+	{
 		$query = "SELECT * FROM {$this->table_name} WHERE nik=? LIMIT 0,1";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->nik);
@@ -133,26 +134,23 @@ class Alternatif {
 		$this->id = $row["id_alternatif"];
 		$this->nik = $row["nik"];
 		$this->nama = $row["nama"];
-		$this->tempat_lahir = $row["tempat_lahir"];
 		$this->tanggal_lahir = $row["tanggal_lahir"];
 		$this->kelamin = $row["kelamin"];
-		$this->alamat = $row["alamat"];
-		$this->jabatan = $row["jabatan"];
-		$this->tanggal_masuk = $row["tanggal_masuk"];
-		$this->pendidikan = $row["pendidikan"];
 		$this->hasil_akhir = $row["hasil_akhir"];
 		// $this->skor_alternatif = $row['skor_alternatif'];
 	}
 
-	function readSatu($a) {
+	function readSatu($a)
+	{
 		$query = "SELECT * FROM {$this->table_name} WHERE id_alternatif='$a' LIMIT 0,1";
-		$stmt = $this->conn->prepare( $query );
+		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
 		return $stmt;
 	}
 
-	function getNewID() {
+	function getNewID()
+	{
 		$query = "SELECT MAX(id_alternatif) AS code FROM {$this->table_name}";
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
@@ -165,42 +163,35 @@ class Alternatif {
 		}
 	}
 
-	function genCode($latest, $key, $chars = 0) {
-    $new = intval(substr($latest, strlen($key))) + 1;
-    $numb = str_pad($new, $chars, "0", STR_PAD_LEFT);
-    return $key . $numb;
+	function genCode($latest, $key, $chars = 0)
+	{
+		$new = intval(substr($latest, strlen($key))) + 1;
+		$numb = str_pad($new, $chars, "0", STR_PAD_LEFT);
+		return $key . $numb;
 	}
 
-	function genNextCode($start, $key, $chars = 0) {
-    $new = str_pad($start, $chars, "0", STR_PAD_LEFT);
-    return $key . $new;
+	function genNextCode($start, $key, $chars = 0)
+	{
+		$new = str_pad($start, $chars, "0", STR_PAD_LEFT);
+		return $key . $new;
 	}
 
-	function update() {
+	function update()
+	{
 		$query = "UPDATE {$this->table_name}
 				SET
 					nik = :nik,
 					nama = :nama,
-					tempat_lahir = :tempat_lahir,
 					tanggal_lahir = :tanggal_lahir,
 					kelamin = :kelamin,
-					alamat = :alamat,
-					jabatan = :jabatan,
-					tanggal_masuk = :tanggal_masuk,
-					pendidikan = :pendidikan
 				WHERE
 					id_alternatif = :id";
 		$stmt = $this->conn->prepare($query);
 
 		$stmt->bindParam(':nik', $this->nik);
 		$stmt->bindParam(':nama', $this->nama);
-		$stmt->bindParam(':tempat_lahir', $this->tempat_lahir);
 		$stmt->bindParam(':tanggal_lahir', $this->tanggal_lahir);
 		$stmt->bindParam(':kelamin', $this->kelamin);
-		$stmt->bindParam(':alamat', $this->alamat);
-		$stmt->bindParam(':jabatan', $this->jabatan);
-		$stmt->bindParam(':tanggal_masuk', $this->tanggal_masuk);
-		$stmt->bindParam(':pendidikan', $this->pendidikan);
 		$stmt->bindParam(':id', $this->id);
 
 		if ($stmt->execute()) {
@@ -210,7 +201,8 @@ class Alternatif {
 		}
 	}
 
-	function delete() {
+	function delete()
+	{
 		$query = "DELETE FROM {$this->table_name} WHERE id_alternatif = ?";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
@@ -221,7 +213,8 @@ class Alternatif {
 		}
 	}
 
-	function hapusell($ax) {
+	function hapusell($ax)
+	{
 		$query = "DELETE FROM {$this->table_name} WHERE id_alternatif in $ax";
 		$stmt = $this->conn->prepare($query);
 		if ($result = $stmt->execute()) {
