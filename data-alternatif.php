@@ -61,10 +61,12 @@ if (isset($_POST['hapus-contengan'])) {
           <tr>
             <th width="10px"><input type="checkbox" name="select-all" id="select-all" /></th>
             <th>ID Alternatif</th>
+
             <th>Nama</th>
             <th>Tanggal Lahir</th>
             <th>Kelamin</th>
 
+            <th>Nilai</th>
             <th width="100px">Aksi</th>
           </tr>
         </thead>
@@ -75,6 +77,7 @@ if (isset($_POST['hapus-contengan'])) {
             <tr>
               <td><input type="checkbox" value="<?= $row['id_alternatif'] ?>" name="checkbox[]" /></td>
               <td><?= $row['id_alternatif'] ?></td>
+
               <td><?= $row['nama'] ?></td>
               <td><?= $row['tanggal_lahir'] ?></td>
               <td><?= $row['kelamin'] ?></td>
