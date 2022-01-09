@@ -115,7 +115,7 @@ class Alternatif
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		$this->id = $row["id_alternatif"];
-		$this->nik = $row["nik"];
+
 		$this->nama = $row["nama"];
 		$this->tanggal_lahir = $row["tanggal_lahir"];
 		$this->kelamin = $row["kelamin"];
