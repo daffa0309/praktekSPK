@@ -68,4 +68,5 @@ if ($_POST) {
 	</div>
 </div>
 
+<!--aku farid>
 <?php include_once('includes/footer.inc.php'); ?>

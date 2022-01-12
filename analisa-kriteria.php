@@ -16,7 +16,7 @@ while ($row = $kriterias->fetch(PDO::FETCH_ASSOC)) {
 		$pcs = explode("C", $roww['id_kriteria']);
 		$c = $kriteriaCount - $pcs[1];
 	}
-	if ($c>=1) {
+	if ($c >= 1) {
 		$r[$row['id_kriteria']] = $c;
 	}
 }
@@ -52,38 +52,45 @@ while ($row = $kriterias->fetch(PDO::FETCH_ASSOC)) {
 							</div>
 						</div>
 					</div>
-					<?php $no=1; foreach ($r as $k => $v): ?>
-						<?php for ($i=1; $i<=$v; $i++): ?>
-							<?php $rows = $kriteriaObj->readSatu($k); while ($row = $rows->fetch(PDO::FETCH_ASSOC)): ?>
+					<?php $no = 1;
+					foreach ($r as $k => $v) : ?>
+						<?php for ($i = 1; $i <= $v; $i++) : ?>
+							<?php $rows = $kriteriaObj->readSatu($k);
+							while ($row = $rows->fetch(PDO::FETCH_ASSOC)) : ?>
 								<div class="row">
 									<div class="col-xs-12 col-md-3">
 										<div class="form-group">
-											<?php $rows = $kriteriaObj->readSatu($k); while($row = $rows->fetch(PDO::FETCH_ASSOC)): ?>
-												<input type="text" class="form-control" value="<?=$row['nama_kriteria'] ?>" readonly />
-												<input type="hidden" name="<?=$k?><?=$no?>" value="<?=$row['id_kriteria']?>" />
+											<?php $rows = $kriteriaObj->readSatu($k);
+											while ($row = $rows->fetch(PDO::FETCH_ASSOC)) : ?>
+												<input type="text" class="form-control" value="<?= $row['nama_kriteria'] ?>" readonly />
+												<input type="hidden" name="<?= $k ?><?= $no ?>" value="<?= $row['id_kriteria'] ?>" />
 											<?php endwhile; ?>
 										</div>
 									</div>
 									<div class="col-xs-12 col-md-6">
 										<div class="form-group">
-											<select class="form-control" name="nl<?=$no?>">
-												<?php $rows = $nilaiObj->readAll(); while ($row = $rows->fetch(PDO::FETCH_ASSOC)): ?>
-													<option value="<?=$row['jum_nilai']?>"><?=$row['jum_nilai']?> - <?=$row['ket_nilai']?></option>
+											<select class="form-control" name="nl<?= $no ?>">
+												<?php $rows = $nilaiObj->readAll();
+												while ($row = $rows->fetch(PDO::FETCH_ASSOC)) : ?>
+													<option value="<?= $row['jum_nilai'] ?>"><?= $row['jum_nilai'] ?> - <?= $row['ket_nilai'] ?></option>
 												<?php endwhile; ?>
 											</select>
 										</div>
 									</div>
 									<div class="col-xs-12 col-md-3">
 										<div class="form-group">
-											<?php $pcs = explode("C", $k); $nid = "C".($pcs[1]+$i); ?>
-											<?php $rows = $kriteriaObj->readSatu($nid); while($row = $rows->fetch(PDO::FETCH_ASSOC)): ?>
-												<input type="text" class="form-control" value="<?=$row['nama_kriteria']?>" readonly />
-												<input type="hidden" name="<?=$nid?><?=$no?>" value="<?=$row['id_kriteria']?>" />
+											<?php $pcs = explode("C", $k);
+											$nid = "C" . ($pcs[1] + $i); ?>
+											<?php $rows = $kriteriaObj->readSatu($nid);
+											while ($row = $rows->fetch(PDO::FETCH_ASSOC)) : ?>
+												<input type="text" class="form-control" value="<?= $row['nama_kriteria'] ?>" readonly />
+												<input type="hidden" name="<?= $nid ?><?= $no ?>" value="<?= $row['id_kriteria'] ?>" />
 											<?php endwhile; ?>
 										</div>
 									</div>
 								</div>
-							<?php endwhile; $no++; ?>
+							<?php endwhile;
+							$no++; ?>
 						<?php endfor; ?>
 					<?php endforeach; ?>
 					<button type="submit" name="submit" class="btn btn-dark"> Selanjutnya <span class="fa fa-arrow-right"></span></button>
@@ -92,5 +99,5 @@ while ($row = $kriterias->fetch(PDO::FETCH_ASSOC)) {
 		</div>
 	</div>
 </div>
-
+<!--test>
 <?php include_once('includes/footer.inc.php'); ?>
