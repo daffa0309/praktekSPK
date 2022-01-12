@@ -39,7 +39,7 @@ class Kriteria {
 	}
 
 	function readAll() {
-		$query = "SELECT * FROM {$this->table_name} ORDER BY id_kriteria ASC";
+		$query = "SELECT * FROM {$this->table_name} ORDER BY id_kriteria ASC ";
 		$stmt = $this->conn->prepare( $query );
 		$stmt->execute();
 

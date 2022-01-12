@@ -66,7 +66,6 @@ if (isset($_POST['hapus-contengan'])) {
             <th>Tanggal Lahir</th>
             <th>Kelamin</th>
 
-            <th>Nilai</th>
             <th width="100px">Aksi</th>
           </tr>
         </thead>
@@ -81,15 +80,7 @@ if (isset($_POST['hapus-contengan'])) {
               <td><?= $row['nama'] ?></td>
               <td><?= $row['tanggal_lahir'] ?></td>
               <td><?= $row['kelamin'] ?></td>
-              <td>
-                <?php $nilObj->id_alternatif = $row['id_alternatif'];
-                $nilObj->readByAlternatif();
-                if ($nilObj->id) : ?>
-                  <?= $nilObj->nilai ?> (<?= $nilObj->keterangan ?>)
-                <?php else : ?>
-                  <span class="label label-danger">Belum</span>
-                <?php endif; ?>
-              </td>
+
               <td class="text-center">
                 <a href="data-alternatif-ubah.php?id=<?= $row['id_alternatif'] ?>" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                 <a href="data-alternatif-hapus.php?id=<?= $row['id_alternatif'] ?>" onclick="return confirm('Yakin ingin menghapus data')" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>

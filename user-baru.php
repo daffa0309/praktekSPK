@@ -6,43 +6,45 @@ if ($_POST) {
   $eks = new User($db);
   $eks->nl = $_POST['nl'];
   $eks->rl = $_POST['rl'];
+
+
   $eks->un = $_POST['un'];
   $eks->pw = md5($_POST['pw']);
 
   if ($eks->pw == md5($_POST['up'])) {
     if ($eks->insert()) { ?>
       <script type="text/javascript">
-        window.onload=function(){
+        window.onload = function() {
           showStickySuccessToast();
         };
       </script> <?php
-    } else { ?>
+              } else { ?>
       <script type="text/javascript">
-        window.onload=function(){
+        window.onload = function() {
           showStickyErrorToast();
         };
       </script> <?php
-    }
-  } else { ?>
+              }
+            } else { ?>
     <script type="text/javascript">
-      window.onload=function(){
+      window.onload = function() {
         showStickyWarningToast();
       };
     </script> <?php
-  }
-}
-?>
+            }
+          }
+              ?>
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12">
-	  <ol class="breadcrumb">
-		  <li><a href="index.php">Beranda</a></li>
-		  <li><a href="user.php">Data Pengguna</a></li>
-		  <li class="active">Tambah Data</li>
-		</ol>
-  	<p style="margin-bottom:10px;">
-  		<strong style="font-size:18pt;"><span class="fa fa-clone"></span> Tambah Pengguna</strong>
-  	</p>
+    <ol class="breadcrumb">
+      <li><a href="index.php">Beranda</a></li>
+      <li><a href="user.php">Data Pengguna</a></li>
+      <li class="active">Tambah Data</li>
+    </ol>
+    <p style="margin-bottom:10px;">
+      <strong style="font-size:18pt;"><span class="fa fa-clone"></span> Tambah Pengguna</strong>
+    </p>
     <div class="panel panel-default">
       <div class="panel-body">
         <form method="post">
@@ -54,9 +56,8 @@ if ($_POST) {
             <label for="rl">Role</label>
             <select class="form-control" name="rl" id="rl" required>
               <option value="">----</option>
-              <option value="atasan">Atasan</option>
-              <option value="kepegawaian">Kepegawaian</option>
-              <option value="manajer">Manajer</option>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
             </select>
           </div>
           <div class="form-group">
@@ -73,7 +74,7 @@ if ($_POST) {
           </div>
           <div class="btn-group">
             <button type="submit" class="btn btn-dark">Simpan</button>
-      		  <button type="button" onclick="location.href='user.php'" class="btn btn-default">Kembali</button>
+            <button type="button" onclick="location.href='user.php'" class="btn btn-default">Kembali</button>
           </div>
         </form>
       </div>

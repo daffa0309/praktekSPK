@@ -52,7 +52,7 @@ class Alternatif
 
 	function readByFilter()
 	{
-		$query = "SELECT * FROM {$this->table_name} a JOIN nilai_awal b ON a.id_alternatif=b.id_alternatif WHERE b.keterangan='B'";
+		$query = "SELECT a.*, AVG(b.nilai) AS nilai, b.keterangan FROM data_alternatif a JOIN nilai_awal b ON a.id_alternatif=b.id_alternatif  GROUP BY a.id_alternatif";
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 

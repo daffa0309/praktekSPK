@@ -53,12 +53,21 @@ if (isset($_POST['hapus-contengan'])) {
         <div class="col-md-6 text-left">
           <strong style="font-size:18pt;"><span class="fa fa-modx"></span> Data Nilai Preferensi</strong>
         </div>
-        <div class="col-md-6 text-right">
-          <div class="btn-group">
-            <button type="submit" name="hapus-contengan" class="btn btn-danger"><span class="fa fa-close"></span> Hapus Contengan</button>
-            <button type="button" onclick="location.href='nilai-awal-baru.php'" class="btn btn-primary"><span class="fa fa-clone"></span> Tambah Data</button>
+        <?php if ($_SESSION["role"] == "admin") : ?>
+          <div class="col-md-6 text-right">
+            <div class="btn-group">
+              <button type="submit" name="hapus-contengan" class="btn btn-danger"><span class="fa fa-close"></span> Hapus Contengan</button>
+              <button type="button" onclick="location.href='nilai-awal-baru.php'" class="btn btn-primary"><span class="fa fa-clone"></span> Tambah Data</button>
+            </div>
           </div>
-        </div>
+        <?php endif; ?>
+        <?php if ($_SESSION["role"] == "user") : ?>
+          <div class="col-md-6 text-right">
+            <div class="btn-group">
+              <button type="button" onclick="location.href='nilai-awal-baru.php'" class="btn btn-primary"><span class="fa fa-clone"></span> Tambah Data</button>
+            </div>
+          </div>
+        <?php endif; ?>
       </div>
       <br />
       <table width="100%" class="table table-striped table-bordered" id="tabeldata">
@@ -67,21 +76,14 @@ if (isset($_POST['hapus-contengan'])) {
             <th width="10px"><input type="checkbox" name="select-all" id="select-all" /></th>
             <th>ID</th>
             <th>Nilai</th>
-            <th>Keterangan</th>
             <th>Periode</th>
-            <th width="100px">Aksi</th>
+            <?php if ($_SESSION["role"] == "admin") : ?>
+              <th width="100px">Aksi</th>
+            <?php endif; ?>
+
           </tr>
         </thead>
-        <tfoot>
-          <tr>
-            <th><input type="checkbox" name="select-all2" id="select-all2" /></th>
-            <th>ID</th>
-            <th>Nilai</th>
-            <th>Keterangan</th>
-            <th>Periode</th>
-            <th>Aksi</th>
-          </tr>
-        </tfoot>
+
         <tbody>
           <?php $no = 1;
           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
@@ -89,21 +91,16 @@ if (isset($_POST['hapus-contengan'])) {
               <td><input type="checkbox" value="<?= $row['id_nilai_awal'] ?>" name="checkbox[]" /></td>
               <td><?= $row['id_alternatif'] ?></td>
               <td><?= $row['nilai'] ?></td>
-              <td><?php
-                  if ($row['keterangan'] == "B") {
-                    echo "Baik";
-                  } elseif ($row['keterangan'] == "C") {
-                    echo "Cukup";
-                  } else {
-                    echo "Kurang";
-                  }
-                  ?></td>
+
               <td><?= $row['periode'] ?></td>
-              <td class="text-center">
-                <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target=".modal" data-id-alternatif="<?= $row['id_alternatif'] ?>"><span class="fa fa-eye" aria-hidden="true"></span></button>
-                <a href="nilai-awal-ubah.php?id=<?= $row['id_nilai_awal'] ?>" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                <a href="nilai-awal-hapus.php?id=<?= $row['id_nilai_awal'] ?>" onclick="return confirm('Yakin ingin menghapus data')" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-              </td>
+              <?php if ($_SESSION["role"] == "admin") : ?>
+                <td class="text-center">
+                  <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target=".modal" data-id-alternatif="<?= $row['id_alternatif'] ?>"><span class="fa fa-eye" aria-hidden="true"></span></button>
+                  <a href="nilai-awal-ubah.php?id=<?= $row['id_nilai_awal'] ?>" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                  <a href="nilai-awal-hapus.php?id=<?= $row['id_nilai_awal'] ?>" onclick="return confirm('Yakin ingin menghapus data')" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                </td>
+              <?php endif; ?>
+
             </tr>
           <?php endwhile; ?>
         </tbody>

@@ -1,5 +1,6 @@
 <?php
-class User {
+class User
+{
 	private $conn;
 	private $table_name = "pengguna";
 
@@ -8,12 +9,14 @@ class User {
 	public $un;
 	public $pw;
 
-	public function __construct($db) {
+	public function __construct($db)
+	{
 		$this->conn = $db;
 	}
 
-	function insert() {
-		$query = "INSERT INTO ".$this->table_name." VALUES(NULL, ?, ?, ?, ?)";
+	function insert()
+	{
+		$query = "INSERT INTO pengguna(nama_lengkap, role, username, password) VALUES(?, ?, ?, ?)";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->nl);
 		$stmt->bindParam(2, $this->rl);
@@ -27,17 +30,19 @@ class User {
 		}
 	}
 
-	function readAll(){
-		$query = "SELECT * FROM ".$this->table_name." ORDER BY id_pengguna ASC";
-		$stmt = $this->conn->prepare( $query );
+	function readAll()
+	{
+		$query = "SELECT * FROM " . $this->table_name . " ORDER BY id_pengguna ASC";
+		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 		return $stmt;
 	}
 
 	// used when filling up the update product form
-	function readOne(){
-		$query = "SELECT * FROM ".$this->table_name." WHERE id_pengguna=? LIMIT 0,1";
-		$stmt = $this->conn->prepare( $query );
+	function readOne()
+	{
+		$query = "SELECT * FROM " . $this->table_name . " WHERE id_pengguna=? LIMIT 0,1";
+		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -49,8 +54,9 @@ class User {
 	}
 
 	// update the product
-	function update() {
-		$query = "UPDATE ".$this->table_name ."
+	function update()
+	{
+		$query = "UPDATE " . $this->table_name . "
 				SET
 					nama_lengkap = :nm,
 					role = :rl,
@@ -76,7 +82,8 @@ class User {
 	}
 
 	// delete the product
-	function delete() {
+	function delete()
+	{
 		$query = "DELETE FROM " . $this->table_name . " WHERE id_pengguna = ?";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
@@ -87,15 +94,17 @@ class User {
 		}
 	}
 
-	function countAll(){
-		$query = "SELECT * FROM ".$this->table_name." ORDER BY id_pengguna ASC";
-		$stmt = $this->conn->prepare( $query );
+	function countAll()
+	{
+		$query = "SELECT * FROM " . $this->table_name . " ORDER BY id_pengguna ASC";
+		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 		return $stmt->rowCount();
 	}
 
-	function hapusell($ax) {
-		$query = "DELETE FROM ".$this->table_name." WHERE id_pengguna in $ax";
+	function hapusell($ax)
+	{
+		$query = "DELETE FROM " . $this->table_name . " WHERE id_pengguna in $ax";
 		$stmt = $this->conn->prepare($query);
 
 		if ($result = $stmt->execute()) {

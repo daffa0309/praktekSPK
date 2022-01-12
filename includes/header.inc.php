@@ -47,26 +47,30 @@ $db = $config->getConnection();
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Home <span class="sr-only">(current)</span></a></li>
-                        <?php if ($_SESSION["role"] == "kepegawaian") : ?>
-                            <li role="presentation"><a href="data-alternatif.php">Pegawai</a></li>
+                        <?php if ($_SESSION["role"] == "admin") : ?>
+                            <li role="presentation"><a href="data-alternatif.php">Anggota</a></li>
                         <?php endif; ?>
 
-                        <?php if ($_SESSION["role"] == "atasan") : ?>
-                            <li role="presentation"><a href="data-kriteria.php">Kriteria</a></li>
-                            <li role="presentation"><a href="nilai.php">Skala Dasar AHP</a></li>
+                        <?php if ($_SESSION["role"] == "admin" or $_SESSION["role"] == "user") : ?>
+
                             <li role="presentation"><a href="nilai-awal.php">Nilai Awal</a></li>
                         <?php endif; ?>
 
-                        <?php if ($_SESSION["role"] == "atasan") : ?>
+                        <?php if ($_SESSION["role"] == "admin") : ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Perbandingan <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li role="presentation"><a href="analisa-kriteria.php">Kriteria</a></li>
+                                    <li role="presentation"><a href="analisa-kriteria-tabel.php">Kriteria</a></li>
                                     <li role="presentation"><a href="analisa-alternatif.php">Alternatif</a></li>
                                 </ul>
                             </li>
                         <?php endif; ?>
-                        <?php if ($_SESSION["role"] == "atasan" or $_SESSION["role"] == "manajer") : ?>
+                        <?php if ($_SESSION["role"] == "user") : ?>
+
+                            <li role="presentation"><a href="analisa-alternatif.php">Alternatif</a></li>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($_SESSION["role"] == "admin") : ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Laporan <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -81,7 +85,7 @@ $db = $config->getConnection();
                             <a href="#" class="dropdown-toggle text-red text-bold" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= $_SESSION["nama_lengkap"] ?> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="profil.php">Profil</a></li>
-                                <?php if ($_SESSION["role"] == "kepegawaian") : ?>
+                                <?php if ($_SESSION["role"] == "admin") : ?>
                                     <li><a href="user.php">Manejer Pengguna</a></li>
                                 <?php endif; ?>
                                 <li role="separator" class="divider"></li>

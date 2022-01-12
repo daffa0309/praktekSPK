@@ -29,7 +29,7 @@ class NilaiAwal {
 	}
 
 	function readAll() {
-		$query = "SELECT * FROM {$this->table_name} ORDER BY id_nilai_awal ASC";
+		$query = "SELECT DATA.id_alternatif, AVG(DATA.nilai) AS nilai, DATA.keterangan, DATA.periode FROM (SELECT * FROM nilai_awal) AS DATA GROUP BY DATA.id_alternatif";
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 

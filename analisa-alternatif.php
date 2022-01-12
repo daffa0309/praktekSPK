@@ -62,9 +62,9 @@ array_splice($nid, $ne, 1);
 						<td><?=$row["nama"]?></td>
 						<td><?=$row["nilai"]?></td>
 						<td><?php
-								if ($row['keterangan'] == "B") {
+								if ($row['nilai'] >= 75) {
 									echo "Baik";
-								}elseif($row['keterangan'] == "C"){
+								}elseif($row['nilai'] <= "C"){
 									echo "Cukup";
 								}else{
 									echo "Kurang";

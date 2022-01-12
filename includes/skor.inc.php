@@ -78,7 +78,7 @@ class Skor {
 	}
 
 	function readAlternatif($a) {
-		$query = "SELECT * FROM data_alternatif WHERE id_alternatif='$a'";
+		$query = "SELECT * FROM data_alternatif WHERE id_alternatif='$a' GROUP BY id_alternatif";
 		$stmt = $this->conn->prepare( $query );
 		$stmt->execute();
 
