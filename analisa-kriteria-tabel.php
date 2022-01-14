@@ -67,7 +67,7 @@ if (isset($_POST['hapus'])) {
 		<table width="100%" class="table table-striped table-bordered">
 			<thead>
 				<tr>
-					<th>Antar Kriteria Rolan</th>
+					<th>Antar Kriteria </th>
 					<?php $bobots1 = $bobotObj->readAll2();
 					while ($row = $bobots1->fetch(PDO::FETCH_ASSOC)) : ?>
 						<th><?= $row['nama_kriteria'] ?></th>
