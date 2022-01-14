@@ -53,7 +53,7 @@ $db = $config->getConnection();
 
                         <?php if ($_SESSION["role"] == "admin" or $_SESSION["role"] == "user") : ?>
 
-                            <li role="presentation"><a href="barang.php">Barang</a></li>
+                            <li role="presentation"><a href="nilai-awal.php">Barang</a></li>
                         <?php endif; ?>
 
                         <?php if ($_SESSION["role"] == "admin") : ?>

@@ -1,5 +1,6 @@
 <?php
-class NilaiAwal {
+class NilaiAwal
+{
 	private $conn;
 	private $table_name = "nilai_awal";
 
@@ -9,11 +10,13 @@ class NilaiAwal {
 	public $keterangan;
 	public $periode;
 
-	public function __construct($db) {
+	public function __construct($db)
+	{
 		$this->conn = $db;
 	}
 
-	function insert() {
+	function insert()
+	{
 		$query = "INSERT INTO {$this->table_name} VALUES(NULL,?,?,?,?)";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id_alternatif);
@@ -28,15 +31,17 @@ class NilaiAwal {
 		}
 	}
 
-	function readAll() {
-		$query = "SELECT DATA.id_alternatif, AVG(DATA.nilai) AS nilai, DATA.keterangan, DATA.periode FROM (SELECT * FROM nilai_awal) AS DATA GROUP BY DATA.id_alternatif";
+	function readAll()
+	{
+		$query = "SELECT DATA.id_alternatif, DATA.id_nilai_awal, AVG(DATA.nilai) AS nilai, DATA.keterangan, DATA.periode FROM (SELECT * FROM nilai_awal) AS DATA GROUP BY DATA.id_alternatif";
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
 		return $stmt;
 	}
 
-	function readOne() {
+	function readOne()
+	{
 		$query = "SELECT * FROM {$this->table_name} WHERE id_nilai_awal=? LIMIT 0,1";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
@@ -49,7 +54,8 @@ class NilaiAwal {
 		$this->periode = $row['periode'];
 	}
 
-	function readByAlternatif() {
+	function readByAlternatif()
+	{
 		$query = "SELECT * FROM {$this->table_name} WHERE id_alternatif=?";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id_alternatif);
@@ -67,17 +73,19 @@ class NilaiAwal {
 		}
 	}
 
-	function getRange($n) {
-	  if ($n >= 75 AND $n <= 100) {
-	    return "B";
-	  } else if ($n > 64 AND $n <= 74) {
-	    return "C";
-	  } else {
-	    return "K";
-	  }
+	function getRange($n)
+	{
+		if ($n >= 75 and $n <= 100) {
+			return "B";
+		} else if ($n > 64 and $n <= 74) {
+			return "C";
+		} else {
+			return "K";
+		}
 	}
 
-	function countAll() {
+	function countAll()
+	{
 		$query = "SELECT * FROM {$this->table_name} ORDER BY id_nilai_awal ASC";
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
@@ -85,7 +93,8 @@ class NilaiAwal {
 		return $stmt->rowCount();
 	}
 
-	function update() {
+	function update()
+	{
 		$query = "UPDATE {$this->table_name}
 				SET
 					id_alternatif = :id_alternatif,
@@ -110,7 +119,8 @@ class NilaiAwal {
 	}
 
 	// delete the product
-	function delete() {
+	function delete()
+	{
 		$query = "DELETE FROM {$this->table_name} WHERE id_nilai_awal=?";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
@@ -122,7 +132,8 @@ class NilaiAwal {
 		}
 	}
 
-	function hapusell($ax) {
+	function hapusell($ax)
+	{
 		$query = "DELETE FROM {$this->table_name} WHERE id_nilai_awal in $ax";
 		$stmt = $this->conn->prepare($query);
 		if ($result = $stmt->execute()) {
