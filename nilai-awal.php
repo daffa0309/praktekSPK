@@ -94,8 +94,6 @@ if (isset($_POST['hapus-contengan'])) {
               <td><?= $row['periode'] ?></td>
               <?php if ($_SESSION["role"] == "admin") : ?>
                 <td class="text-center">
-                  <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target=".modal" data-id-alternatif="<?= $row['id_alternatif'] ?>"><span class="fa fa-eye" aria-hidden="true"></span></button>
-                  <a href="nilai-awal-ubah.php?id=<?= $row['id_nilai_awal'] ?>" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                   <a href="nilai-awal-hapus.php?id=<?= $row['id_nilai_awal'] ?>" onclick="return confirm('Yakin ingin menghapus data')" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                 </td>
               <?php endif; ?>

@@ -82,7 +82,7 @@ if (isset($_POST['hapus-contengan'])) {
               <td><?= $row['kelamin'] ?></td>
 
               <td class="text-center">
-                <a href="data-alternatif-ubah.php?id=<?= $row['id_alternatif'] ?>" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+
                 <a href="data-alternatif-hapus.php?id=<?= $row['id_alternatif'] ?>" onclick="return confirm('Yakin ingin menghapus data')" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
               </td>
             </tr>
