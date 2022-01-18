@@ -82,7 +82,37 @@ $stmt5 = $pro5->readAll();
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/highcharts.js"></script>
 <script src="assets/js/exporting.js"></script>
-
+<script>
+	var chart1; // globally available
+	$(document).ready(function() {
+		chart1 = new Highcharts.Chart({
+			chart: {
+				renderTo: 'container2',
+				type: 'column'
+			},
+			title: {
+				text: 'Grafik Usulan'
+			},
+			xAxis: {
+				categories: ['Alternatif']
+			},
+			yAxis: {
+				title: {
+					text: 'Jumlah Nilai'
+				}
+			},
+			series: [
+				<?php while ($row4 = $stmt4->fetch(PDO::FETCH_ASSOC)) : ?>
+					//data yang diambil dari database dimasukan ke variable nama dan data
+					{
+						name: '<?php echo $row4['nama'] ?>',
+						data: [<?php echo $row4['hasil_akhir'] ?>]
+					},
+				<?php endwhile; ?>
+			]
+		});
+	});
+</script>
 </body>
 
 </html>
