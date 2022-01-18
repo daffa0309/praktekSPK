@@ -2,7 +2,6 @@
 class Alternatif
 {
 	private $conn;
-	private $table_name = "data_alternatif";
 
 	public $id;
 	public $nik;
@@ -26,7 +25,7 @@ class Alternatif
 
 	function insert()
 	{
-		$query = "INSERT INTO {$this->table_name} VALUES(?, ?, ?, ?, ?)";
+		$query = "INSERT INTO data_alternatif VALUES(?, ?, ?, ?, ?)";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
 		$stmt->bindParam(2, $this->nama);
@@ -43,7 +42,7 @@ class Alternatif
 
 	function readAll()
 	{
-		$query = "SELECT * FROM {$this->table_name} ORDER BY id_alternatif ASC";
+		$query = "SELECT * FROM data_alternatif ORDER BY id_alternatif ASC";
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
@@ -61,7 +60,7 @@ class Alternatif
 
 	function countByFilter()
 	{
-		$query = "SELECT * FROM {$this->table_name} a JOIN nilai_awal b ON a.id_alternatif=b.id_alternatif WHERE b.keterangan='B' ";
+		$query = "SELECT * FROM data_alternatif a JOIN nilai_awal b ON a.id_alternatif=b.id_alternatif WHERE b.keterangan='B' ";
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
@@ -71,7 +70,7 @@ class Alternatif
 	function readAllWithNilai()
 	{
 		$query = "SELECT *, b.nilai, b.keterangan
-				FROM {$this->table_name} a
+				FROM data_alternatif a
 					JOIN nilai_awal b ON a.id_alternatif=b.id_alternatif
 				WHERE a.id_alternatif IN (SELECT id_alternatif FROM nilai_awal)
 				ORDER BY a.id_alternatif";
@@ -84,7 +83,7 @@ class Alternatif
 	function readByRank()
 	{
 		$query = "SELECT *
-				FROM {$this->table_name} a
+				FROM data_alternatif a
 					JOIN nilai_awal b ON a.id_alternatif=b.id_alternatif
 				WHERE b.keterangan='B'
 					AND b.periode=?
@@ -99,7 +98,7 @@ class Alternatif
 
 	function countAll()
 	{
-		$query = "SELECT * FROM {$this->table_name} ORDER BY id_alternatif ASC";
+		$query = "SELECT * FROM data_alternatif ORDER BY id_alternatif ASC";
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
@@ -108,7 +107,7 @@ class Alternatif
 
 	function readOne()
 	{
-		$query = "SELECT * FROM {$this->table_name} WHERE id_alternatif=? LIMIT 0,1";
+		$query = "SELECT * FROM data_alternatif WHERE id_alternatif=? LIMIT 0,1";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
 		$stmt->execute();
@@ -125,7 +124,7 @@ class Alternatif
 
 	function readOneByNik()
 	{
-		$query = "SELECT * FROM {$this->table_name} WHERE nik=? LIMIT 0,1";
+		$query = "SELECT * FROM data_alternatif WHERE nik=? LIMIT 0,1";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->nik);
 		$stmt->execute();
@@ -142,7 +141,7 @@ class Alternatif
 
 	function readSatu($a)
 	{
-		$query = "SELECT * FROM {$this->table_name} WHERE id_alternatif='$a' LIMIT 0,1";
+		$query = "SELECT * FROM data_alternatif WHERE id_alternatif='$a' LIMIT 0,1";
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
@@ -151,7 +150,7 @@ class Alternatif
 
 	function getNewID()
 	{
-		$query = "SELECT MAX(id_alternatif) AS code FROM {$this->table_name}";
+		$query = "SELECT MAX(id_alternatif) AS code FROM data_alternatif";
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -178,7 +177,7 @@ class Alternatif
 
 	function update()
 	{
-		$query = "UPDATE {$this->table_name}
+		$query = "UPDATE data_alternatif
 				SET
 					nik = :nik,
 					nama = :nama,
@@ -203,7 +202,7 @@ class Alternatif
 
 	function delete()
 	{
-		$query = "DELETE FROM {$this->table_name} WHERE id_alternatif = ?";
+		$query = "DELETE FROM data_alternatif WHERE id_alternatif = ?";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
 		if ($result = $stmt->execute()) {
@@ -215,7 +214,7 @@ class Alternatif
 
 	function hapusell($ax)
 	{
-		$query = "DELETE FROM {$this->table_name} WHERE id_alternatif in $ax";
+		$query = "DELETE FROM data_alternatif WHERE id_alternatif in $ax";
 		$stmt = $this->conn->prepare($query);
 		if ($result = $stmt->execute()) {
 			return true;
