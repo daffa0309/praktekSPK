@@ -48,7 +48,7 @@ if ($_POST) {
 
 					<div class="form-group">
 						<label for="tanggal_lahir">Tanggal Lahir</label>
-						<input type="text" name="tanggal_lahir" id="tanggal_lahir" class="form-control datepicker" required="on">
+						<input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control datepicker" required="on">
 					</div>
 					<div class="form-group">
 						<label for="kelamin">Jenis Kelamin</label>
