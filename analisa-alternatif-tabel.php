@@ -124,7 +124,7 @@ if (isset($altkriteria)) {
 				</tbody>
 				<tfoot>
 					<tr class="info">
-						<th>Jumlah Rolan</th>
+						<th>Jumlah </th>
 						<?php /*$jumlahBobot=[];*/ $alt4a = $altObj->readByFilter();
 						while ($row = $alt4a->fetch(PDO::FETCH_ASSOC)) : ?>
 							<th>
@@ -166,6 +166,8 @@ if (isset($altkriteria)) {
 									$jumlahBobot = $skoObj->jak;
 									if ($baris['id_alternatif'] == $kolom['id_alternatif']) {
 										$n = 1 / $jumlahBobot;
+										var_dump($n);
+
 										$skoObj->insert2($n, $baris['id_alternatif'], $kolom['id_alternatif'], $altkriteria);
 										echo number_format($n, 4, '.', ',');
 									} else {
@@ -191,54 +193,6 @@ if (isset($altkriteria)) {
 				</tbody>
 			</table>
 
-			<!-- <table width="100%" class="table table-striped table-bordered">
-				<thead>
-					<tr>
-						<th>Penjumlahan</th>
-						<?php //$alt1y = $skoObj->readAll2(); while ($row = $alt1y->fetch(PDO::FETCH_ASSOC)): 
-						?>
-							<th><? //=$row['nama']
-								?></th>
-						<?php //endwhile; 
-						?>
-						<th class="info">Jumlah</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php //$sumRow = []; $alt2y = $skoObj->readAll2(); while ($baris = $alt2y->fetch(PDO::FETCH_ASSOC)): 
-					?>
-						<tr>
-							<th class="active"><? //=$baris['nama'] 
-												?></th>
-							<?php //$jumlah = 0; $alt3y = $skoObj->readAll2(); while ($kolom = $alt3y->fetch(PDO::FETCH_ASSOC)): 
-							?>
-								<td>
-								<?php
-								// if ($baris['id_alternatif'] == $kolom['id_alternatif']) {
-								// 	$c = $prioritas * 1;
-								// 	echo number_format($c, 4, '.', ',');
-								// 	$jumlah += $c;
-								// } else {
-								// 	$skoObj->readAll1($baris['id_alternatif'], $kolom['id_alternatif'], $altkriteria);
-								// 	$c = $prioritas * $skoObj->kp;
-								// 	echo number_format($c, 4, '.', ',');
-								// 	$jumlah += $c;
-								// }
-								?>
-								</td>
-							<?php //endwhile; 
-							?>
-							<th class="info">
-								<?php
-								// $sumRow[$baris['id_alternatif']] = $jumlah;
-								// echo number_format($jumlah, 4, '.', ',');
-								?>
-							</th>
-						</tr>
-					<?php //endwhile;
-					?>
-				</tbody>
-			</table> -->
 
 		</div>
 	</div>
