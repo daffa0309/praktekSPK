@@ -1,18 +1,20 @@
 <?php
-class Kriteria {
+class Kriteria
+{
 	private $conn;
-	private $table_name = "data_kriteria";
 
 	public $id;
 	public $nama;
 	public $bobot;
 
-	public function __construct($db) {
+	public function __construct($db)
+	{
 		$this->conn = $db;
 	}
 
-	function insert() {
-		$query = "INSERT INTO {$this->table_name} VALUES(?, ?, 0, 0)";
+	function insert()
+	{
+		$query = "INSERT INTO data_kriteria VALUES(?, ?, 0, 0)";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
 		$stmt->bindParam(2, $this->nama);
@@ -24,39 +26,43 @@ class Kriteria {
 		}
 	}
 
-	function getNewID() {
-		$query = "SELECT id_kriteria FROM {$this->table_name} ORDER BY id_kriteria DESC LIMIT 1";
+	function getNewID()
+	{
+		$query = "SELECT id_kriteria FROM data_kriteria ORDER BY id_kriteria DESC LIMIT 1";
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 		if ($stmt->rowCount()) {
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
 			$pcs = explode("C", $row['id_kriteria']);
-			$result = "C".($pcs[1]+1);
+			$result = "C" . ($pcs[1] + 1);
 		} else {
 			$result = "C1";
 		}
 		return $result;
 	}
 
-	function readAll() {
-		$query = "SELECT * FROM {$this->table_name} ORDER BY id_kriteria ASC ";
-		$stmt = $this->conn->prepare( $query );
+	function readAll()
+	{
+		$query = "SELECT * FROM data_kriteria ORDER BY id_kriteria ASC ";
+		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
 		return $stmt;
 	}
 
-	function countAll() {
-		$query = "SELECT * FROM {$this->table_name} ORDER BY id_kriteria ASC";
-		$stmt = $this->conn->prepare( $query );
+	function countAll()
+	{
+		$query = "SELECT * FROM data_kriteria ORDER BY id_kriteria ASC";
+		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
 		return $stmt->rowCount();
 	}
 
-	function readOne() {
-		$query = "SELECT * FROM {$this->table_name} WHERE id_kriteria=? LIMIT 0,1";
-		$stmt = $this->conn->prepare( $query );
+	function readOne()
+	{
+		$query = "SELECT * FROM data_kriteria WHERE id_kriteria=? LIMIT 0,1";
+		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -65,16 +71,18 @@ class Kriteria {
 		$this->bobot = $row['bobot_kriteria'];
 	}
 
-	function readSatu($a) {
-		$query = "SELECT * FROM {$this->table_name} WHERE id_kriteria='$a' LIMIT 0,1";
-		$stmt = $this->conn->prepare( $query );
+	function readSatu($a)
+	{
+		$query = "SELECT * FROM data_kriteria WHERE id_kriteria='$a' LIMIT 0,1";
+		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
 		return $stmt;
 	}
 
-	function update() {
-		$query = "UPDATE {$this->table_name}
+	function update()
+	{
+		$query = "UPDATE data_kriteria
 				SET
 					nama_kriteria = :nama
 				WHERE
@@ -91,8 +99,9 @@ class Kriteria {
 		}
 	}
 
-	function delete() {
-		$query = "DELETE FROM {$this->table_name} WHERE id_kriteria=?";
+	function delete()
+	{
+		$query = "DELETE FROM data_kriteria WHERE id_kriteria=?";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
 
@@ -103,8 +112,9 @@ class Kriteria {
 		}
 	}
 
-	function hapusell($ids) {
-		$query = "DELETE FROM {$this->table_name} WHERE id_kriteria IN $ids";
+	function hapusell($ids)
+	{
+		$query = "DELETE FROM data_kriteria WHERE id_kriteria IN $ids";
 		$stmt = $this->conn->prepare($query);
 
 		if ($result = $stmt->execute()) {

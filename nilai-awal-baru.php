@@ -62,7 +62,7 @@ if ($_POST) {
       <div class="panel-body">
         <form method="post">
           <div class="form-group">
-            <label for="id_alternatif">Pegawai</label>
+            <label for="id_alternatif">Anggota</label>
             <select class="form-control" id="id_alternatif" name="id_alternatif">
               <option value="">---</option>
               <?php while ($row = $alt->fetch(PDO::FETCH_ASSOC)) : ?>
