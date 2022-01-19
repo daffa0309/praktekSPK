@@ -64,7 +64,7 @@ if (isset($_POST['hapus-contengan'])) {
             <th width="100px">Aksi</th>
           </tr>
         </thead>
-        <tfoot>
+        <!-- <tfoot>
           <tr>
             <th><input type="checkbox" name="select-all2" id="select-all2" /></th>
             <th>Nama Lengkap</th>
@@ -72,7 +72,7 @@ if (isset($_POST['hapus-contengan'])) {
             <th>Username</th>
             <th>Aksi</th>
           </tr>
-        </tfoot>
+        </tfoot> -->
         <tbody>
           <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
             <tr>

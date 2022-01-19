@@ -27,7 +27,7 @@ while ($row = $kriterias->fetch(PDO::FETCH_ASSOC)) {
 		<ol class="breadcrumb">
 			<li><a href="index.php">Beranda</a></li>
 			<li class="active">Analisa Kriteria</li>
-			<li><a href="analisa-kriteria-tabel.php">Tabel Analisa Kriteria</a></li>
+			<li><a href="#" data-toggle="modal" data-target="#myModalalt">Tabel Analisa Kriteria</a></li>
 		</ol>
 		<p style="margin-bottom:10px;">
 			<strong style="font-size:18pt;"><span class="fa fa-bomb"></span> Analisa Kriteria</strong>

@@ -60,7 +60,7 @@ $db = $config->getConnection();
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Perbandingan <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li role="presentation"><a href="analisa-kriteria-tabel.php">Kriteria</a></li>
+                                    <li role="presentation"><a href="analisa-kriteria.php">Kriteria</a></li>
                                     <li role="presentation"><a href="analisa-alternatif.php">Alternatif</a></li>
                                 </ul>
                             </li>
