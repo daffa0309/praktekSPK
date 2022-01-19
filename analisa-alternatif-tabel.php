@@ -166,7 +166,7 @@ if (isset($altkriteria)) {
 									$jumlahBobot = $skoObj->jak;
 									if ($baris['id_alternatif'] == $kolom['id_alternatif']) {
 										$n = 1 / $jumlahBobot;
-										var_dump($n);
+										// var_dump($n);
 
 										$skoObj->insert2($n, $baris['id_alternatif'], $kolom['id_alternatif'], $altkriteria);
 										echo number_format($n, 4, '.', ',');

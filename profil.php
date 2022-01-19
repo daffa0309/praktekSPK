@@ -38,17 +38,17 @@ if($_POST){
     <form method="post">
       <div class="form-group">
         <label for="nl">Nama Lengkap</label>
-        <input type="text" class="form-control" id="nl" name="nl" value="<?php echo $eks->nl; ?>" required>
+        <input type="text" class="form-control" id="nl" name="nl" value="<?php echo $eks->nl; ?>" disabled>
       </div>
       <div class="form-group">
         <label for="un">Username</label>
-        <input type="text" class="form-control" id="un" name="un" value="<?php echo $eks->un; ?>" required>
+        <input type="text" class="form-control" id="un" name="un" value="<?php echo $eks->un; ?>" disabled>
       </div>
       <div class="form-group">
         <label for="pw">Password</label>
-        <input type="text" class="form-control" id="pw" name="pw" value="<?php echo $eks->pw; ?>" required>
+        <input type="text" class="form-control" id="pw" name="pw" value="<?php echo $eks->pw; ?>" disabled>
       </div>
-      <button type="submit" class="btn btn-primary"><span class="fa fa-edit"></span> Ubah</button>
+      <!-- <button type="submit" class="btn btn-primary"><span class="fa fa-edit"></span> Ubah</button> -->
     </form>
 
   </div>

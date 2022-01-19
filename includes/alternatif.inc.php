@@ -4,17 +4,11 @@ class Alternatif
 	private $conn;
 
 	public $id;
-	public $nik;
 	public $nama;
-	public $tempat_lahir;
 	public $tanggal_lahir;
 	public $kelamin;
-	public $alamat;
-	public $jabatan;
-	public $tanggal_masuk;
-	public $pendidikan;
 	public $hasil_akhir;
-	public $skor_alternatif;
+	// public $skor_alternatif;
 
 	public $periode;
 
@@ -31,7 +25,7 @@ class Alternatif
 		$stmt->bindParam(2, $this->nama);
 		$stmt->bindParam(3, $this->tanggal_lahir);
 		$stmt->bindParam(4, $this->kelamin);
-		$stmt->bindParam(5, $this->tanggal_masuk);
+		$stmt->bindParam(5, $this->hasil_akhir);
 
 		if ($stmt->execute()) {
 			return true;
@@ -122,22 +116,21 @@ class Alternatif
 		// $this->skor_alternatif = $row['skor_alternatif'];
 	}
 
-	function readOneByNik()
-	{
-		$query = "SELECT * FROM data_alternatif WHERE nik=? LIMIT 0,1";
-		$stmt = $this->conn->prepare($query);
-		$stmt->bindParam(1, $this->nik);
-		$stmt->execute();
-		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+	// function readOneByNik()
+	// {
+	// 	$query = "SELECT * FROM data_alternatif WHERE nik=? LIMIT 0,1";
+	// 	$stmt = $this->conn->prepare($query);
+	// 	$stmt->bindParam(1, $this->nik);
+	// 	$stmt->execute();
+	// 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		$this->id = $row["id_alternatif"];
-		$this->nik = $row["nik"];
-		$this->nama = $row["nama"];
-		$this->tanggal_lahir = $row["tanggal_lahir"];
-		$this->kelamin = $row["kelamin"];
-		$this->hasil_akhir = $row["hasil_akhir"];
-		// $this->skor_alternatif = $row['skor_alternatif'];
-	}
+	// 	$this->id = $row["id_alternatif"];
+	// 	$this->nama = $row["nama"];
+	// 	$this->tanggal_lahir = $row["tanggal_lahir"];
+	// 	$this->kelamin = $row["kelamin"];
+	// 	$this->hasil_akhir = $row["hasil_akhir"];
+	// 	// $this->skor_alternatif = $row['skor_alternatif'];
+	// }
 
 	function readSatu($a)
 	{
@@ -179,7 +172,7 @@ class Alternatif
 	{
 		$query = "UPDATE data_alternatif
 				SET
-					nik = :nik,
+					-- nik = :nik,
 					nama = :nama,
 					tanggal_lahir = :tanggal_lahir,
 					kelamin = :kelamin,
@@ -187,7 +180,7 @@ class Alternatif
 					id_alternatif = :id";
 		$stmt = $this->conn->prepare($query);
 
-		$stmt->bindParam(':nik', $this->nik);
+		// $stmt->bindParam(':nik', $this->nik);
 		$stmt->bindParam(':nama', $this->nama);
 		$stmt->bindParam(':tanggal_lahir', $this->tanggal_lahir);
 		$stmt->bindParam(':kelamin', $this->kelamin);
