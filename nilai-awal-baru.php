@@ -73,7 +73,7 @@ if ($_POST) {
           <?php while ($row = $kri->fetch(PDO::FETCH_ASSOC)) : ?>
             <div class="form-group">
               <label for="<?= $row["nama_kriteria"] ?>"><?= ucfirst($row["nama_kriteria"]) ?></label>
-              <input type="number" min="1" max="100" name="kriteria[<?= $row["id_kriteria"] ?>]" class="form-control" required>
+              <input type="number" min="1" max="5" name="kriteria[<?= $row["id_kriteria"] ?>]" class="form-control" required>
             </div>
           <?php endwhile; ?>
           <div class="form-group">
