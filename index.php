@@ -74,7 +74,6 @@ $stmt5 = $pro5->readAll();
 </div>
 
 <hr>
-<footer class="text-center">Copyright &copy; 2017 NewFace Esport Inc.</footer>
 
 </div>
 
@@ -114,5 +113,7 @@ $stmt5 = $pro5->readAll();
 	});
 </script>
 </body>
+<?php include_once 'includes/footer.inc.php';
+?>
 
 </html>

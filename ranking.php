@@ -22,7 +22,7 @@ $stmtx2y = $ranObj->readBob();
 		<h3>Hasil Perankingan</h3>
 		<hr>
 		<br>
-		<?php for ($i = 2017; $i <= 2018; $i++) : ?>
+		<?php for ($i = 2022; $i <= 2030; $i++) : ?>
 			<h4>Tahun <?= $i ?></h4>
 			<table width="100%" class="table table-striped table-bordered">
 				<thead>
