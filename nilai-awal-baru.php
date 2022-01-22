@@ -73,7 +73,26 @@ if ($_POST) {
           <?php while ($row = $kri->fetch(PDO::FETCH_ASSOC)) : ?>
             <div class="form-group">
               <label for="<?= $row["nama_kriteria"] ?>"><?= ucfirst($row["nama_kriteria"]) ?></label>
-              <input type="number" min="1" max="5" name="kriteria[<?= $row["id_kriteria"] ?>]" class="form-control" required>
+              <select class="form-control select2" name="kriteria[<?= $row["id_kriteria"] ?>]">
+                <option value="">
+                  Pilih..
+                </option>
+                <option value="1">
+                  Kurang - 1
+                </option>
+                <option value="2">
+                  Kurang Baik - 2
+                </option>
+                <option value="3">
+                  Cukup Baik - 3
+                </option>
+                <option value="4">
+                  Baik - 4
+                </option>
+                <option value="5">
+                  Sangat Baik - 5
+                </option>
+              </select>
             </div>
           <?php endwhile; ?>
           <div class="form-group">
